@@ -21,7 +21,7 @@
     "async": "~0.2.9",
     "underscore": "~1.5.1",
     "request": "~2.27.0",
-    "formidable": "~1.0.14"
+    "formidable": "~1.0.14",
     "fancy-groupme-bot": "~0.1.3"
   },
   "devDependencies": {
