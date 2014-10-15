@@ -1,5 +1,11 @@
-var bot = require('fancy-groupme-bot');
-
+const bot = require('fancy-groupme-bot');
+const async = require('async');
+const request = require('request');
+const _ = require('underscore');
+const events = require('events');
+const util = require('util');
+const http = require('http');
+const formidable = require('formidable');
 // local configuration read from env.
 const TOKEN = "pHRZcCOaax7eJNCNYWrT4OIvtFkzGl41pVOq3cHv"; // your groupme api token
 const GROUP = "7264366"; // the room you want to join
