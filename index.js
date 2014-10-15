@@ -17,7 +17,7 @@ mybot.on('botRegistered', function(b) {
 mybot.on('botMessage', function(b, message) {
   console.log("I got a message, fyi: " + message.name + " said " + message.text);
   if (message.name != b.name && (message.text.search(/^!echo/) != -1)) {
-    var minusecho = message.text[4:]
+    var minusecho = message.text.substring(5)
     b.message(message.name + " said " + message.text);
   }
 });
