@@ -12,7 +12,7 @@ const GROUP = "7264366"; // the room you want to join
 const NAME = "node"; // the name of your bot
 const URL = "http://frozen-waters-9985.herokuapp.com/"; // the domain you're serving from, should be accessible by Groupme.
 const CONFIG = {token:TOKEN, group:GROUP, name:NAME, url:URL};
-
+var port = Number(process.env.PORT || 5000);
 var mybot = bot(CONFIG);
 
 mybot.on('botRegistered', function(b) {
@@ -29,4 +29,4 @@ mybot.on('botMessage', function(b, message) {
 });
 
 console.log("i am serving");
-mybot.serve(80);
+mybot.serve(port);
