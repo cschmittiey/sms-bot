@@ -56,12 +56,12 @@ mybot.on('botMessage', function (b, message) {
     } else if (message.name != b.name && (message.text.search(/^syn/) != -1)) {
         b.message("ACK!"); //sounds like a nasty cough you got there
     } else if (message.name != b.name && (message.text.search(/^!w/) != -1)) { //This is going to be a a simple weather info command. thing.
-        var zipCode = message.text.substring(3);
+        var zipCode = Number(message.text.substring(3));
         b.message("ZipCode=" + zipCode);
         var zipLat = Number(cities.zip_lookup(zipCode).latitude);
-        b.message("Latitude=" + String(zipLat));
+        b.message("Latitude=" + zipLat);
         var zipLong = Number(cities.zip_lookup(zipCode).longitude);
-        b.message("Longitude=" + String(zipLong));
+        b.message("Longitude=" + zipLong);
     }
 });
 //startup
