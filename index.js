@@ -10,9 +10,9 @@ const events = require('events');
 const util = require('util');
 const http = require('http');
 const formidable = require('formidable');
-const WunderNodeClient = require("wundernode");
+const Forecast = require('forecast');
 const URL = require('url');
-
+var cities = require('cities');
 //fancy-groupme-bot config vars
 const TOKEN = "pHRZcCOaax7eJNCNYWrT4OIvtFkzGl41pVOq3cHv"; // your groupme api token
 const GROUP = "7264366"; // the room you want to join
@@ -28,13 +28,18 @@ const CONFIG = {
 //some other useful stuff
 var port = Number(process.env.PORT || 5000);
 
-//Wundernode config
-var wundernodekey = "a8324356cc86d2ea";
-var wunderdebug = false;
-
-//instance initilization for both wundernode and fancy-groupme-bot
 var mybot = bot(CONFIG);
-var wunder = new WunderNodeClient(wundernodekey, wunderdebug, 10, 'minute');
+
+var forecast = new Forecast({
+  service: 'forecast.io',
+  key: 'b07f3f4bd55e300af0bec21f71de5fb0',
+  units: 'fahrenheit', // Only the first letter is parsed
+  cache: true,      // Cache API requests?
+  ttl: {            // How long to cache requests. Uses syntax from moment.js: http://momentjs.com/docs/#/durations/creating/
+    minutes: 5,
+    seconds: 45
+    }
+});
 
 //When the groupme bot registers, this is passed to the chat.
 mybot.on('botRegistered', function (b) {
@@ -51,13 +56,12 @@ mybot.on('botMessage', function (b, message) {
     } else if (message.name != b.name && (message.text.search(/^syn/) != -1)) {
         b.message("ACK!"); //sounds like a nasty cough you got there
     } else if (message.name != b.name && (message.text.search(/^w/) != -1)) { //This is going to be a a simple weather info command. thing.
-        var query = message.text.substring(2);
-        wunder.conditions(query, function (err, obj) {
-            if (err) {
-                b.message("Error processing query string:" + queryData.query);
-            }
-            b.message(obj);
-        });
+        var zipCode = message.text.substring(2);
+        b.message("ZipCode=")
+        var zipLat = Number(cities.zip_lookup(zipCode).latitude);
+        b.message("Latitude=" + String(zipLat))
+        var zipLong = Number(cities.zip_lookup(zipCode).longitude);
+        b.message("Longitude=" + String(zipLong))
     }
 });
 //startup
