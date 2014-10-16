@@ -59,7 +59,7 @@ mybot.on('botMessage', function (b, message) {
         var zipCode = Number(message.text.substring(3));
         var zipLat = Number(cities.zip_lookup(zipCode).latitude);
         var zipLong = Number(cities.zip_lookup(zipCode).longitude);
-        result = forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, result?
+        var result = forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, result?
             if (err) return console.dir(err);
             console.dir(resultweather);
         });
