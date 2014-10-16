@@ -31,13 +31,13 @@ var port = Number(process.env.PORT || 5000);
 var mybot = bot(CONFIG);
 
 var forecast = new Forecast({
-  service: 'forecast.io',
-  key: 'b07f3f4bd55e300af0bec21f71de5fb0',
-  units: 'fahrenheit', // Only the first letter is parsed
-  cache: true,      // Cache API requests?
-  ttl: {            // How long to cache requests. Uses syntax from moment.js: http://momentjs.com/docs/#/durations/creating/
-    minutes: 5,
-    seconds: 45
+    service: 'forecast.io',
+    key: 'b07f3f4bd55e300af0bec21f71de5fb0',
+    units: 'fahrenheit', // Only the first letter is parsed
+    cache: true, // Cache API requests?
+    ttl: { // How long to cache requests. Uses syntax from moment.js: http://momentjs.com/docs/#/durations/creating/
+        minutes: 5,
+        seconds: 45
     }
 });
 
@@ -59,7 +59,10 @@ mybot.on('botMessage', function (b, message) {
         var zipCode = Number(message.text.substring(3));
         var zipLat = Number(cities.zip_lookup(zipCode).latitude);
         var zipLong = Number(cities.zip_lookup(zipCode).longitude);
-        forecast.get([zipLat, zipLong], function(err, result) {  if(err) return console.dir(err);  console.dir(result);});
+        forecast.get([zipLat, zipLong], function (err, result) {
+            if (err) return console.dir(err);
+            console.dir(result);
+        });
         b.message("Currently: " + result.currently.temperature + "F, " + result.currently.summary + ".");
 
     }
