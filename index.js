@@ -65,8 +65,8 @@ mybot.on('botMessage', function (b, message) {
         });
         //if (err) {b.message("we broke something:" + err)};
         //if (weather) b.message("Currently: " + weather.currently.temperature + "F, " + weather.currently.summary + ".");
-        b.message(result)
-        b.message(weather)
+        b.message(result);
+        b.message(weather);
 
     }
 });
