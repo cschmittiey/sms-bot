@@ -56,12 +56,12 @@ mybot.on('botMessage', function (b, message) {
     } else if (message.name != b.name && (message.text.search(/^syn/) != -1)) {
         b.message("ACK!"); //sounds like a nasty cough you got there
     } else if (message.name != b.name && (message.text.search(/^!w/) != -1)) { //This is going to be a a simple weather info command. thing.
-        var zipCode = Number(message.text.substring(3));
-        var zipLat = Number(cities.zip_lookup(zipCode).latitude);
-        var zipLong = Number(cities.zip_lookup(zipCode).longitude);
-        var result = forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, result?
+        var zipCode = Number(message.text.substring(3)); //extract the zip code
+        var zipLat = Number(cities.zip_lookup(zipCode).latitude); //define lat
+        var zipLong = Number(cities.zip_lookup(zipCode).longitude); //define long
+        var result = forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, variables?
             if (err) return console.dir(err);
-            console.dir(resultweather);
+            console.dir(result);
         });
         //if (err) {b.message("we broke something:" + err)};
         //if (weather) b.message("Currently: " + weather.currently.temperature + "F, " + weather.currently.summary + ".");
