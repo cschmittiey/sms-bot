@@ -51,7 +51,7 @@ mybot.on('botMessage', function (b, message) {
     } else if (message.name != b.name && (message.text.search(/^syn/) != -1)) {
         b.message("ACK!"); //sounds like a nasty cough you got there
     } else if (message.name != b.name && (message.text.search(/^w/) != -1)) { //This is going to be a a simple weather info command. thing.
-        var query = message.text.substring(5);
+        var query = message.text.substring(2);
         wunder.conditions(query, function (err, obj) {
             if (err) {
                 b.message("Error processing query string:" + queryData.query);
