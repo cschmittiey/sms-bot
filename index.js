@@ -60,7 +60,7 @@ mybot.on('botMessage', function (b, message) {
         var zipLat = Number(cities.zip_lookup(zipCode).latitude);
         var zipLong = Number(cities.zip_lookup(zipCode).longitude);
         forecast.get([-33.8683, 151.2086], function(err, result) {  if(err) return console.dir(err);  console.dir(weather);});
-        b.message("Currently: " + result.currently.temperature + "F, " + result.currently.summary + ".")
+        b.message("Currently: " + result.currently.temperature + "F, " + result.currently.summary + ".");
 
     }
 });
