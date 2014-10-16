@@ -59,13 +59,13 @@ mybot.on('botMessage', function (b, message) {
         var zipCode = Number(message.text.substring(3)); //extract the zip code
         var zipLat = Number(cities.zip_lookup(zipCode).latitude); //define lat
         var zipLong = Number(cities.zip_lookup(zipCode).longitude); //define long
-        var result = forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, variables?
-            if (err) return console.dir(err);
-            console.dir(result);
+        forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, variables?
+            if (err) return b.message(err);
+            b.message(weather);
         });
         //if (err) {b.message("we broke something:" + err)};
         //if (weather) b.message("Currently: " + weather.currently.temperature + "F, " + weather.currently.summary + ".");
-        b.message(result);
+        //b.message(result);
 
     }
 });
