@@ -60,8 +60,10 @@ mybot.on('botMessage', function (b, message) {
         var zipLat = Number(cities.zip_lookup(zipCode).latitude); //define lat
         var zipLong = Number(cities.zip_lookup(zipCode).longitude); //define long
         forecast.get([zipLat, zipLong], function (err, weather) { //y u no define, variables?
-            if (err) return b.message(err);
-            b.message(weather);
+            if (err) {return b.message(err);}
+            else {b.message("No err")}
+            if (weather) {return b.message(weather);}
+            else {"no weather"}
         });
         //if (err) {b.message("we broke something:" + err)};
         //if (weather) b.message("Currently: " + weather.currently.temperature + "F, " + weather.currently.summary + ".");
