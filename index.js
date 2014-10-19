@@ -65,10 +65,6 @@ mybot.on('botMessage', function (b, message) {
             if (weather) {return b.message(weather);}
             else {"no weather"}
         });
-        //if (err) {b.message("we broke something:" + err)};
-        //if (weather) b.message("Currently: " + weather.currently.temperature + "F, " + weather.currently.summary + ".");
-        //b.message(result);
-
     }
 });
 //startup
