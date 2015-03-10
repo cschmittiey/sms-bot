@@ -56,7 +56,7 @@ mybot.on('botMessage', function (b, message) {
     } else if (message.name != b.name && (message.text.search(/^syn/) != -1)) {
         b.message("ACK!"); //sounds like a nasty cough you got there
     } else if (message.name != b.name && (message.text.search(/^!w/) != -1)) { //This is going to be a a simple weather info command. thing.
-        var city = citiies.zip_lookup(Number(message.text.substring(3)));
+        var city = cities.zip_lookup(Number(message.text.substring(3)));
         forecast.get([city.latitude, city.longitude], function (err, weather) { //y u no define, variables?
             if (weather) {return b.message(weather);}
             else {"no weather"}
